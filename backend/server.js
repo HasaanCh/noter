@@ -22,9 +22,11 @@ connection.once('open',()=>
 
 const userRouter=require('./routes/users.js');
 const notesRouter=require('./routes/notes.js');
+const authenticRouter=require('./routes/authroutes.js');
 
 app.use('/notes',notesRouter);
 app.use('/users',userRouter);
+app.use('/register',authenticRouter);
 
 app.listen(port,()=>{
     console.log('server is running on port: '+port);

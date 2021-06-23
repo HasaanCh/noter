@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 
-const userSchema = new Schema({
+const authenticScehma = new Schema({
     email: {
         type: String,
         trim: true,
@@ -31,7 +31,7 @@ const userSchema = new Schema({
     timeStamp: true
 })
 
-userSchema.virtual('password').
+authenticScehma.virtual('password').
 set(function (password) {
     this.password = password;
     this.salt = this.makeSalt();
@@ -40,7 +40,7 @@ set(function (password) {
     return this._password
 })
 
-userSchema.methods = {
+authenticScehma.methods = {
     makeSalt: function () {
         return Math.round(new Date().valueOf() * Math.random()) = ""
     },
@@ -54,8 +54,6 @@ userSchema.methods = {
         }
     },
     authenticate:function(plainpassword){
-        return this.encryptPassword(plainpassword) === this.hashed_password 
+        return this.encryptPassword(plainpassword)
     }
 }
-
-module.exports=mongoose.model('User',userSchema)

@@ -1,5 +1,4 @@
 const router=require('express').Router();
-// const router = express.Router();
 let Note=require('../models/notes.model.js');
 
 router.route('/').get((req,res)=>
@@ -14,9 +13,9 @@ router.route('/add').post((req,res)=>
     const username=req.body.username;
     const newNote= new Note({notedata,username});
     
-    newNote.save()
-    .then(()=>res.json("Note Added"))
+    newNote.save().then(()=>res.json(newNote))
     .catch(err=>res.status(400).json('Error :'+err));
+
 });
 
 router.route('/:id').get((req,res)=>
