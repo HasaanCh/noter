@@ -483,7 +483,6 @@ body {
 .custom-form form {
   display: flex;
   flex-wrap: wrap;
-  align-items: ;
   justify-content: center;
 }
 
@@ -500,7 +499,22 @@ body {
 
 .custom-form form button:hover {
   background-color: transparent;
-  border: ;
   color: #614a19;
   transition: all ease-in-out 0.2s;
+}
+
+
+.custom-form form {
+  min-height: auto;
+}
+
+.custom-form {
+  position: relative;
+  flex-wrap: wrap;
+}
+
+.custom-info.shown {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
