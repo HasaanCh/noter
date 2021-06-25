@@ -1,9 +1,15 @@
 const router=require('express').Router();
 let Note=require('../models/notes.model.js');
 
-router.route('/').get((req,res)=>
+// router.route('/').get((req,res)=>
+// {
+//     Note.find().then(notes =>res.json(notes)).catch(err=>res.status(400).json('Error: '+err));
+// });
+
+
+router.route('/email/:email').get((req,res)=>
 {
-    Note.find().then(notes =>res.json(notes)).catch(err=>res.status(400).json('Error: '+err));
+    Note.find({email:req.params.email}).then(notes =>res.json(notes)).catch(err=>res.status(400).json('Error: '+err));
 });
 
 
@@ -11,7 +17,9 @@ router.route('/add').post((req,res)=>
 {
     const notedata=req.body.notedata;
     const username=req.body.username;
-    const newNote= new Note({notedata,username});
+    const email=req.body.email;
+    const newNote= new Note({notedata,username,email});
+   
     
     newNote.save().then(()=>res.json(newNote))
     .catch(err=>res.status(400).json('Error :'+err));

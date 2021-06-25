@@ -23,15 +23,21 @@ export default class Navbar extends Component
                             <div className="profile item-header">
                                 <Link to="/" className="notes-link">Notes</Link>
                     </div>
-                    <button
-                  onClick={() => {
-                    signout(() => {
-                        var win = window.open('/login',"_self");
-                        win.focus();
-                    });
-                  }}
-                  >Logout
-                      </button>
+                    <div className="profile item-header">
+                                <Link to="/register" className="notes-link">Register</Link>
+                    </div>
+                    <div className="profile item-header">
+                            <button
+                        onClick={() => {
+                            signout(() => {
+                                var win = window.open('/login',"_self");
+                                win.focus();
+                            });
+                        }}
+                        >Logout
+                            </button>
+                    </div>
+                   
                     </div>
                 </div>
             </div>

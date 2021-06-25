@@ -49,45 +49,49 @@ exports.registerController = (req, res) => {
           errors: 'Email is taken'
         });
       }
+      else
+      {
+        const token = jwt.sign(
+          {
+            name,
+            email,
+            password
+          },
+          process.env.JWT_ACCOUNT_ACTIVATION,
+          {
+            expiresIn: '5m'
+          }
+        );
+    
+        const emailData = {
+          from: process.env.EMAIL_FROM,
+          to: email,
+          subject: 'Account activation link',
+          html: `
+                    <h1>Please use the following to activate your account</h1>
+                    <p>${process.env.CLIENT_URL}/activate/${token}</p>
+                    <hr />
+                    <p>This email may containe sensetive information</p>
+                    <p>${process.env.CLIENT_URL}</p>
+                `
+        };
+    
+        transporter.sendMail(emailData).then(sent => {
+            return res.json({
+              message: `Email has been sent to ${email}`,
+              data:sent
+            });
+          })
+          .catch(err => {
+            return res.status(400).json({
+              success: false,
+              errors: errorHandler(err)
+            });
+          });
+      }
     });
 
-    const token = jwt.sign(
-      {
-        name,
-        email,
-        password
-      },
-      process.env.JWT_ACCOUNT_ACTIVATION,
-      {
-        expiresIn: '5m'
-      }
-    );
-
-    const emailData = {
-      from: process.env.EMAIL_FROM,
-      to: email,
-      subject: 'Account activation link',
-      html: `
-                <h1>Please use the following to activate your account</h1>
-                <p>${process.env.CLIENT_URL}/users/activate/${token}</p>
-                <hr />
-                <p>This email may containe sensetive information</p>
-                <p>${process.env.CLIENT_URL}</p>
-            `
-    };
-
-    transporter.sendMail(emailData).then(sent => {
-        return res.json({
-          message: `Email has been sent to ${email}`,
-          data:sent
-        });
-      })
-      .catch(err => {
-        return res.status(400).json({
-          success: false,
-          errors: errorHandler(err)
-        });
-      });
+   
   }
 };
 
@@ -111,20 +115,28 @@ exports.activationController = (req, res) => {
           password
         });
 
+        // user.save(user).then(res=>{
+        //   console.log("saved");
+        //   res.json({
+        //     success: true,
+        //     message: user,
+        //     message: 'Signup success'
+        //   })
+        // }).catch(error=>console.log(error));
         user.save((err, user) => {
-          if (err) {
-            console.log('Save error', errorHandler(err));
-            return res.status(401).json({
-              errors: errorHandler(err)
-            });
-          } else {
-            return res.json({
-              success: true,
-              message: user,
-              message: 'Signup success'
-            });
-          }
-        });
+                  if (err) {
+                    console.log('Save error', errorHandler(err));
+                    return res.status(401).json({
+                      errors: errorHandler(err)
+                    });
+                  } else {
+                    return res.json({
+                      success: true,
+                      message: user,
+                      message: 'Signup success'
+                    });
+                  }
+                });
       }
     });
   } else {

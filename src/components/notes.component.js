@@ -37,6 +37,7 @@ export default class NoteList extends Component
             {
                 return item._id===id;
             })
+            console.log("---------------")
             console.log(dataa);
             
             this.setState({notedata:dataa[0].notedata})
@@ -56,12 +57,17 @@ export default class NoteList extends Component
 
     componentDidMount() {
         const aloo=isAuth();
-        console.log(aloo.email);
-        this.setState({email:aloo.email});
-        this.setState({noteuser:aloo.name});
-        axios.get('http://127.0.0.1:5000/notes/email/'+aloo.email).then(response =>{
+        // console.log(aloo);
+        if(aloo)
+        {
+            // console.log("hanji hanji")
+            this.setState({email:aloo.email});
+            this.setState({noteuser:aloo.name});
+            axios.get('http://127.0.0.1:5000/notes/email/'+aloo.email).then(response =>{
             this.setState({notes:response.data});
         }).catch((error)=>console.log(error));
+        }
+        
     }
 
     addnew()
@@ -74,20 +80,26 @@ export default class NoteList extends Component
                         }).then(function(userID) {
                             return userID;
                         });
-        
+                        // console.log(newnote);
         
                         const printAddress = () => {
                             newnote.then(async a => {
                             console.log(a.data._id);
-
+                            console.log(this.state.email);
+                            // axios.get('http://127.0.0.1:5000/notes/email/'+this.state.email).then(response =>{
+                            //     console.log(response);
+                            //     this.setState({notes:response.data[0]});
+                            // });
                             axios.get('http://127.0.0.1:5000/notes/email/'+this.state.email).then(response =>{
                                 this.setState({notes:response.data}),this.showModal(a.data._id);}).catch((error)=>console.log(error));
                             });
-                        };
+                       
+                        }
                         
                         printAddress();
 
     }
+
 
     deleteNote(id)
     {
@@ -144,7 +156,7 @@ export default class NoteList extends Component
                {this.notesList()}
             </div>
 
-            <OutsideClickHandler onOutsideClick={() => { this.hideModal();console.log("outisde clicked") }} >
+            <OutsideClickHandler onOutsideClick={() => { this.hideModal() }} >
 
                 <div className={"noteModal "+this.state.noteclass}>
                     <div className="noteclose">
