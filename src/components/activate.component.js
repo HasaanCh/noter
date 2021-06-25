@@ -53,7 +53,7 @@ export default class Activate extends Component
         let {name}=jwt.decode(token);
         this.setState({infoclass:"shown"});
         this.setState({infotext:name})
-        axios.post(`http://localhost:5000/api/activation`, {
+        axios.post(`https://backendprojectnoter.herokuapp.com/api/activation`, {
           token
         })
         .then(res => {

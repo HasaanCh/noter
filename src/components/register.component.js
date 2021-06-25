@@ -52,7 +52,7 @@ export default class Register extends Component
         console.log(e);
         e.preventDefault();
 
-        axios.post(`http://localhost:5000/api/register`,{
+        axios.post(`https://backendprojectnoter.herokuapp.com/api/register`,{
             name:e.target[0].value,
             email:e.target[1].value,
             password:e.target[2].value,

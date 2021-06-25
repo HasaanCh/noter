@@ -40,7 +40,7 @@ export default class Login extends Component
         console.log(e);
         e.preventDefault();
 
-        axios.post(`http://localhost:5000/api/login`,{
+        axios.post(`https://backendprojectnoter.herokuapp.com/api/login`,{
             email:e.target[0].value,
             password:e.target[1].value
         }).then(res=>{
