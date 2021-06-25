@@ -56,7 +56,7 @@ export default class Activate extends Component
         return(
             
         <div className="registration-form custom-form">
-            {isAuth() ? <Redirect to='/' /> : null}
+            {/* {isAuth() ? <Redirect to='/' /> : null} */}
             <form
                 className='mx-auto max-w-xs relative '
                 onSubmit={this.handleSubmit}
