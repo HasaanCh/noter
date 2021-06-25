@@ -63,7 +63,7 @@ export default class NoteList extends Component
             // console.log("hanji hanji")
             this.setState({email:aloo.email});
             this.setState({noteuser:aloo.name});
-            axios.get('http://127.0.0.1:5000/notes/email/'+aloo.email).then(response =>{
+            axios.get('https://backend133terminal.herokuapp.com/notes/email/'+aloo.email).then(response =>{
             this.setState({notes:response.data});
         }).catch((error)=>console.log(error));
         }
@@ -73,7 +73,7 @@ export default class NoteList extends Component
     addnew()
     {
 
-        var newnote=axios.post('http://127.0.0.1:5000/notes/add/', {
+        var newnote=axios.post('https://backend133terminal.herokuapp.com/notes/add/', {
                         "username": this.state.noteuser,
                         "notedata": "Hello I am new",
                         "email":this.state.email
@@ -86,11 +86,11 @@ export default class NoteList extends Component
                             newnote.then(async a => {
                             console.log(a.data._id);
                             console.log(this.state.email);
-                            // axios.get('http://127.0.0.1:5000/notes/email/'+this.state.email).then(response =>{
+                            // axios.get('https://backend133terminal.herokuapp.com/notes/email/'+this.state.email).then(response =>{
                             //     console.log(response);
                             //     this.setState({notes:response.data[0]});
                             // });
-                            axios.get('http://127.0.0.1:5000/notes/email/'+this.state.email).then(response =>{
+                            axios.get('https://backend133terminal.herokuapp.com/notes/email/'+this.state.email).then(response =>{
                                 this.setState({notes:response.data}),this.showModal(a.data._id);}).catch((error)=>console.log(error));
                             });
                        
@@ -104,7 +104,7 @@ export default class NoteList extends Component
     deleteNote(id)
     {
         this.hideModal();
-        axios.delete('http://127.0.0.1:5000/notes/'+id).then(res=> console.log(res.data));
+        axios.delete('https://backend133terminal.herokuapp.com/notes/'+id).then(res=> console.log(res.data));
         this.setState({
             notes:this.state.notes.filter(el=>el._id !== id)
         })
@@ -134,7 +134,7 @@ export default class NoteList extends Component
 
     myChangeHandler =  (event) => {
             this.setState({  notedata: event.target.value });
-            axios.post('http://127.0.0.1:5000/notes/update/'+this.state.noteid, {
+            axios.post('https://backend133terminal.herokuapp.com/notes/update/'+this.state.noteid, {
             "username": this.state.noteuser,
             "notedata": event.target.value
             }).then(()=>{this.componentDidMount()})
