@@ -30,9 +30,9 @@ export default class Activate extends Component
         let token = this.props.match.params.token;
         console.log(token);
         e.preventDefault();
-        let {name}=jwt.decode(token);
-        this.setState({infoclass:"shown"});
-        this.setState({infotext:name})
+        // let {name}=jwt.decode(token);
+        // this.setState({infoclass:"shown"});
+        // this.setState({infotext:name})
         axios.post(`https://backendprojectnoter.herokuapp.com/api/activation`, {
           token
         })
@@ -56,7 +56,7 @@ export default class Activate extends Component
         return(
             
         <div className="registration-form custom-form">
-            {/* {isAuth() ? <Redirect to='/' /> : null} */}
+            {isAuth() ? <Redirect to='/' /> : null}
             <form
                 className='mx-auto max-w-xs relative '
                 onSubmit={this.handleSubmit}
