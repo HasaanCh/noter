@@ -442,3 +442,65 @@ body {
   margin: 0px;
   border-radius: 20px;
 }
+
+
+
+/* Inline #3 | https://noterproject.herokuapp.com/login */
+
+.custom-form form {
+  min-height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.custom-form form input {
+  width: 100%;
+}
+
+.custom-form form {
+  /* min-height: 300px; */
+  /* display: flex; */
+  /* align-items: center; */
+  /* justify-content: center; */
+}
+
+.custom-form {
+  min-height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.custom-form form input {
+  margin-bottom: 10px;
+  height: 40px;
+  border-radius: 10px;
+  padding: 0px 10px;
+  font-family: open sans;
+}
+
+.custom-form form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: ;
+  justify-content: center;
+}
+
+.custom-form form button {
+  font-family: open sans;
+  background-color: #614a19;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: 2px solid #614a19;
+  cursor: pointer;
+  transition: all ease-in-out 0.2s;
+}
+
+.custom-form form button:hover {
+  background-color: transparent;
+  border: ;
+  color: #614a19;
+  transition: all ease-in-out 0.2s;
+}

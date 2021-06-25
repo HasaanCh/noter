@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import {Link,Redirect} from 'react-router-dom';
 import { signout } from '../helpers/auth';
+import { authenticate, isAuth } from '../helpers/auth';
 
 
 
