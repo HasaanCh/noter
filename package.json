@@ -2,6 +2,13 @@
   "name": "noter",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "14.x"
+  },
+{
+  "name": "noter",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
     "@sendgrid/mail": "^7.4.5",
     "@testing-library/jest-dom": "^5.11.4",
