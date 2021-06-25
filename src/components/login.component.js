@@ -57,7 +57,7 @@ export default class Login extends Component
     {
         return(
             
-        <div>
+        <div className="custom-form">
             {isAuth() ? <Redirect to='/' /> : null}
             {/* <ToastContainer /> */}
             <form

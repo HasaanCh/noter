@@ -22,26 +22,6 @@ export default class Activate extends Component
         this.handleSubmit=this.handleSubmit.bind(this);
     }
 
-    // onChange=(e)=>
-    // {
-
-    //     if(e.target.type==="text")
-    //     {
-    //      this.setState({name:e.target.value});
-    //     }
-
-    //    if(e.target.type==="email")
-    //    {
-    //     this.setState({email:e.target.value});
-    //    }
-      
-
-    //    if(e.target.type==="password")
-    //    {
-    //     this.setState({password:e.target.value});
-    //    }
-        
-    // }
 
 
 
