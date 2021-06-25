@@ -18,7 +18,8 @@ export default class Register extends Component
             password:"",
             name:"",
             infotext:"Hello Dolly",
-            infoclass:"hidden"
+            infoclass:"hidden",
+            registerbutton:"Register"
         };
 
         this.handleSubmit=this.handleSubmit.bind(this);
@@ -51,7 +52,7 @@ export default class Register extends Component
     {
         console.log(e);
         e.preventDefault();
-
+        this.setState({registerbutton:"Please Wait"})
         axios.post(`https://backendprojectnoter.herokuapp.com/api/register`,{
             name:e.target[0].value,
             email:e.target[1].value,
@@ -60,10 +61,12 @@ export default class Register extends Component
             console.log(res);
             this.setState({infotext:res.data.message});
             this.setState({infoclass:"shown"})
+            this.setState({registerbutton:"Register"})
 
         }).catch(error=> {
             this.setState({infotext:"Email already Exists or wrong email address"});
-            this.setState({infoclass:"shown"})
+            this.setState({infoclass:"shown"});
+            this.setState({registerbutton:"Register"});
         })
     }
 
@@ -103,7 +106,7 @@ export default class Register extends Component
                 />
                 <button
                   type='submit'            >
-                  <span className='ml-3'>Sign In</span>
+                  <span className='ml-3'>{this.state.registerbutton}</span>
                 </button>
                 
               </form>
