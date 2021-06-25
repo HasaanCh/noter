@@ -34,7 +34,7 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "npm start"
+    "start": "node /src/index.js"
   },
   "eslintConfig": {
     "extends": [
