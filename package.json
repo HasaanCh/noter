@@ -34,7 +34,8 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "react-scripts start"
+    "start": "react-scripts start",
+    "heroku-postbuild": "cd backend && npm ci && npm start"
   },
   "eslintConfig": {
     "extends": [

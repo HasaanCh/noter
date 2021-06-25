@@ -7,7 +7,8 @@
     "node": "14.x"
   },
   "scripts": {
-    "dev": "node server"
+    "start": "node server"
+
   },
   "keywords": [],
   "author": "",
