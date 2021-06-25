@@ -25,7 +25,7 @@ export default class Login extends Component
        {
         this.setState({email:e.target.value});
        }
-
+ 
        if(e.target.type==="password")
        {
         this.setState({password:e.target.value});
