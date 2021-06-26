@@ -18,7 +18,7 @@ export default class Login extends Component
             password:"",
             loginbuttontext:"Login",
             loginnotification:"Wrong Email or Password",
-            notiifactionshown="hidden"
+            notiifactionshown:"hidden"
         };
 
         this.handleSubmit=this.handleSubmit.bind(this);
