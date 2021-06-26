@@ -16,7 +16,9 @@ export default class Login extends Component
         this.state={
             email:"",
             password:"",
-            loginbuttontext:"Login"
+            loginbuttontext:"Login",
+            loginnotification:"Wrong Email or Password",
+            notiifactionshown="hidden"
         };
 
         this.handleSubmit=this.handleSubmit.bind(this);
@@ -42,6 +44,7 @@ export default class Login extends Component
     {
         console.log(e);
         e.preventDefault();
+        this.setState({notiifactionshown:"hidden"});
         this.setState({loginbuttontext:"Please Wait"});
         axios.post(`https://backendprojectnoter.herokuapp.com/api/login`,{
             email:e.target[0].value,
@@ -53,7 +56,10 @@ export default class Login extends Component
             this.setState({loginbuttontext:"Login"})
             // toast.success(`Hey ${res.data.user.name}, Welcome back!`);
         }).catch(error=>{console.log(error);
-          this.setState({loginbuttontext:"Login"})})
+          this.setState({loginbuttontext:"Login"});
+          this.setState({notiifactionshown:"shown"});
+          // this.setState()
+        })
     }
 
 
@@ -87,7 +93,7 @@ export default class Login extends Component
                   type='submit'            >
                   <span className='ml-3'>{this.state.loginbuttontext}</span>
                 </button>
-                
+                <div className={"custom-info "+this.state.notiifactionshown}>{this.state.loginnotification}</div>
               </form>
         </div>
         )
